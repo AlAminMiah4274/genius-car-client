@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ServiceCard from './ServiceCard';
 
 const Services = () => {
 
@@ -12,16 +13,18 @@ const Services = () => {
 
     return (
         <div>
-            <div className='text-center'>
+            <div className='text-center mb-4'>
                 <p className='text-2xl text-orange-600 font-bold'>Service</p>
                 <h2 className='font-semibold text-5xl'>Our Service Area</h2>
                 <p>the majority have suffered alteration in some form, by injected humour, or randomised <br />
                     words which don't look even slightly believable.</p>
             </div>
-            <div>
-                <p>services: {services.length}</p>
+            <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
-
+                    services.map(service => <ServiceCard
+                        key={service._id}
+                        service={service}
+                    ></ServiceCard>)
                 }
             </div>
         </div>
