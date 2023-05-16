@@ -3,7 +3,7 @@ import ServiceCard from './ServiceCard';
 
 const Services = () => {
 
-    const [services, setServices] = useState({});
+    const [services, setServices] = useState([]);
 
     useEffect(() => {
         fetch('services.json')
