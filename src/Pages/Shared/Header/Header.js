@@ -7,6 +7,12 @@ const Header = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => console.log(err))
+    };
+
     const menueItems = <>
         <li className='font-semibold'><Link to='/'>Home</Link></li>
         {
@@ -14,7 +20,7 @@ const Header = () => {
                 <>
                     <li className='font-semibold'><Link to='/order'>Orders</Link></li>
                     <li className='font-semibold'>
-                        <button onClick={logOut}>Sign Out</button>
+                        <button onClick={handleLogOut}>Sign Out</button>
                     </li>
                 </>
                 :
