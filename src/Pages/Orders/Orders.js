@@ -4,7 +4,7 @@ import OrderRow from './OrderRow';
 
 const Orders = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
 
     // to show orders given individual email
@@ -14,9 +14,14 @@ const Orders = () => {
                 authorization: `Bearer ${localStorage.getItem('genius-token')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json();
+            })
             .then(data => setOrders(data))
-    }, [user?.email]);
+    }, [user?.email, logOut]);
 
     // to delete the unnecessary order
     const handleDelete = id => {
